@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bible Reading Tracker</title>
+  <style>
+    #content {
+      text-align: center;
+      padding: 20px;
+    }
+    #buttonContainer {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #completionMessage {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h2>Have you read the Bible today?</h2>
+    <div id="buttonContainer">
+      <button id="completionButton" onclick="completeReading()">Yes, I have read it</button>
+    </div>
+    <div id="completionMessage">
+      <p>Good job. Keep it up!</p>
+    </div>
+  </div>
+
+  <script>
+    function completeReading() {
+      // Hide the button
+      document.getElementById("completionButton").style.display = "none";
+
+      // Show the completion message
+      document.getElementById("completionMessage").style.display = "block";
+    }
+  </script>
+</body>
+</html>
