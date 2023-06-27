@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="content">
+      <h1>{% block title %} Have you read the Bible today? {% endblock %}</h1>
+
+      {% if readToday %}
+      <div id="completionMessage">
+        <h2>Yes, I've read today.</h2>
+        <p>Good job. Keep it up!</p>
+        <!-- button that sends post request -->
+        <form action="/reset" method="post">
+          <input type="submit" name="Reset" value="Reset Today's Reading" />
+        </form>
+      </div>
+      {% else %}
+      <!-- button that sends post request -->
+      <form action="" method="post">
+        <input type="submit" name="Yes" value="yes i have" />
+      </form>
+      {% endif %}
+    </div>
+{% endblock %}
+
