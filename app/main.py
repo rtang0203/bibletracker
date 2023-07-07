@@ -1,12 +1,10 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, request, url_for, flash, redirect
 from flask_login import login_required, current_user
 from .models import ReadingLog
 from datetime import date
 from . import db
 
 main = Blueprint('main', __name__)
-
-from flask import Flask, render_template, request, url_for, flash, redirect, Blueprint
 
 def hasReadToday():
     if current_user.is_authenticated:
@@ -52,4 +50,7 @@ def reset():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
+    pastEntries = []
+    if current_user.is_authenticated:
+        pastEntries = ReadingLog.query.filter_by(user_id=current_user.id, date=date.today()).all()
+    return render_template('profile.html', name=current_user.name, entries=pastEntries)

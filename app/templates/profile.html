@@ -3,5 +3,11 @@
 {% block content %}
 <h1 class="title">
   Hello {{name}}!
+  <h2>Past Reading Log Entries</h2>
+  <ul>
+    {% for entry in entries %}
+      <li>{{ entry.date }}</li>
+    {% endfor %}
+  </ul>
 </h1>
 {% endblock %}
