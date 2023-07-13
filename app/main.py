@@ -52,5 +52,5 @@ def reset():
 def profile():
     pastEntries = []
     if current_user.is_authenticated:
-        pastEntries = ReadingLog.query.filter_by(user_id=current_user.id, date=date.today()).all()
+        pastEntries = ReadingLog.query.filter_by(user_id=current_user.id).all()
     return render_template('profile.html', name=current_user.name, entries=pastEntries)

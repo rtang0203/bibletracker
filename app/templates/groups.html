@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  shows list of groups youre in. option to create new group
+  <h2>Your Groups</h2>
+  {% if not yourGroups %}
+    you are not a member of any groups.
+  {% endif %}
+  <ul>
+    {% for group in yourGroups %}
+      <li><a href="{{ url_for('group.show_group', group_id=group.id) }}">{{ group.group_name }}</a></li>
+    {% endfor %}
+  </ul>
+
+
+  <div class="box">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+  </div>
+
+  <form action="/newgroup" method="POST">
+    <h3>Create Group</h3>
+    <div class="field">
+        <div class="control">
+            <input class="input is-large" type="text" name="groupname" placeholder="Group Name" autofocus="">
+        </div>
+    </div>
+    <input type="submit" name="inputButton" value="Create Group" />
+    <button class="button is-block is-info is-large is-fullwidth">Create Group</button>
+  </form>
+</h1>
+{% endblock %}
